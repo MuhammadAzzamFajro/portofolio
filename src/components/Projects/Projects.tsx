@@ -1,0 +1,124 @@
+'use client';
+
+import { useState } from 'react';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import styles from './Projects.module.css';
+
+interface Project {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    tags: string[];
+    category: string;
+    liveUrl: string;
+    githubUrl: string;
+    isFeatured?: boolean;
+}
+
+const projects: Project[] = [
+    {
+        id: 1,
+        title: 'Personal Portfolio Website',
+        description: 'A modern, high-performance portfolio website built with Next.js 14, React, and TypeScript. Features include a fully responsive design, custom animations, dark mode aesthetics, and dynamic content rendering.',
+        image: '🚀',
+        tags: ['Next.js 14', 'TypeScript', 'React', 'CSS Modules', 'Responsive'],
+        category: 'Web App',
+        liveUrl: '#',
+        githubUrl: '#',
+        isFeatured: true,
+    },
+    {
+        id: 2,
+        title: 'E-Commerce Dashboard',
+        description: 'A comprehensive admin dashboard for managing online stores, featuring real-time analytics, inventory management, and order tracking.',
+        image: '🛒',
+        tags: ['React', 'Redux', 'Node.js', 'PostgreSQL'],
+        category: 'Web App',
+        liveUrl: '#',
+        githubUrl: '#',
+    },
+    {
+        id: 3,
+        title: 'Task Management System',
+        description: 'Collaborative task management tool with drag-and-drop kanban boards, team collaboration features, and productivity analytics.',
+        image: '📋',
+        tags: ['Vue.js', 'Firebase', 'Tailwind', 'PWA'],
+        category: 'Web App',
+        liveUrl: '#',
+        githubUrl: '#',
+    },
+];
+
+const categories = ['All', 'Web App', 'Mobile', 'AI/ML'];
+
+export default function Projects() {
+    const [activeCategory, setActiveCategory] = useState('All');
+
+    const filteredProjects = projects.filter(
+        project => activeCategory === 'All' || project.category === activeCategory
+    );
+
+    return (
+        <section id="projects" className={styles.projects}>
+            <div className={styles.container}>
+                <div className={styles.header}>
+                    <span className={styles.label}>My Work</span>
+                    <h2 className={styles.title}>
+                        Featured <span className={styles.highlight}>Projects</span>
+                    </h2>
+                    <p className={styles.description}>
+                        A selection of projects that demonstrate my passion for building high-quality software
+                    </p>
+                </div>
+
+                <div className={styles.filters}>
+                    {categories.map((category) => (
+                        <button
+                            key={category}
+                            className={`${styles.filterBtn} ${activeCategory === category ? styles.active : ''}`}
+                            onClick={() => setActiveCategory(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+
+                <div className={styles.grid}>
+                    {filteredProjects.map((project, index) => (
+                        <div
+                            key={project.id}
+                            className={`${styles.projectCard} ${project.isFeatured ? styles.featured : ''}`}
+                            style={{ animationDelay: `${index * 0.1}s` }}
+                        >
+                            <div className={styles.projectImage}>
+                                <span className={styles.projectEmoji}>{project.image}</span>
+                                {project.isFeatured && <span className={styles.featuredBadge}>Featured</span>}
+                                <div className={styles.overlay}>
+                                    <div className={styles.overlayButtons}>
+                                        <a href={project.liveUrl} className={styles.overlayBtn} target="_blank" rel="noopener noreferrer">
+                                            <FaExternalLinkAlt /> Live Demo
+                                        </a>
+                                        <a href={project.githubUrl} className={styles.overlayBtn} target="_blank" rel="noopener noreferrer">
+                                            <FaGithub /> Source
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles.projectContent}>
+                                <span className={styles.projectCategory}>{project.category}</span>
+                                <h3 className={styles.projectTitle}>{project.title}</h3>
+                                <p className={styles.projectDescription}>{project.description}</p>
+                                <div className={styles.tags}>
+                                    {project.tags.map((tag) => (
+                                        <span key={tag} className={styles.tag}>{tag}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
