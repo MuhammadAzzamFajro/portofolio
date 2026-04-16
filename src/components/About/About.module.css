@@ -5,10 +5,12 @@
 }
 
 .mainContent {
-    display: grid;
-    grid-template-columns: 1fr 0.4fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 4rem;
-    align-items: start;
+    max-width: 900px;
+    margin-inline: auto;
 }
 
 .textSection {
@@ -17,6 +19,7 @@
     padding: 3rem;
     border-radius: 2rem;
     backdrop-filter: blur(10px);
+    text-align: center;
 }
 
 .paragraph {
@@ -33,11 +36,15 @@
 
 .statsSection {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    width: 100%;
 }
 
 .statItem {
+    flex: 1;
+    min-width: 200px;
     padding: 2rem;
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);

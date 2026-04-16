@@ -43,13 +43,18 @@
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    gap: 4rem;
 }
 
 .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 900px;
     animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -96,7 +101,7 @@
 
 .title {
     font-family: var(--font-heading);
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 800;
     line-height: 1;
     margin-bottom: 1.5rem;
@@ -112,6 +117,9 @@
 
 .roleWrapper {
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .roleHeader {
@@ -124,10 +132,10 @@
 
 .roleBody {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
     color: var(--text-primary);
-    min-height: 3rem;
+    min-height: 3.5rem;
 }
 
 .cursor {
@@ -142,11 +150,12 @@
 }
 
 .description {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     color: var(--text-secondary);
-    max-width: 540px;
+    max-width: 650px;
     margin-bottom: 3rem;
     line-height: 1.7;
+    margin-inline: auto;
 }
 
 .description strong {
@@ -158,6 +167,7 @@
     display: flex;
     gap: 1.5rem;
     align-items: center;
+    justify-content: center;
 }
 
 .btnSecondary {
@@ -178,6 +188,7 @@
     justify-content: center;
     align-items: center;
     animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    width: 100%;
 }
 
 .imageBackdrop {
