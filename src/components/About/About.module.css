@@ -8,67 +8,67 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 4rem;
-    max-width: 900px;
+    max-width: 850px;
     margin-inline: auto;
 }
 
 .textSection {
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);
-    padding: 3rem;
-    border-radius: 2rem;
-    backdrop-filter: blur(10px);
-    text-align: center;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    border-radius: 2.5rem;
+    backdrop-filter: blur(15px);
+    width: 100%;
 }
 
 .paragraph {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
     line-height: 1.8;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.paragraph strong {
-    color: var(--text-primary);
-    font-weight: 600;
+.highlight {
+    color: var(--accent-cyan);
+    font-weight: 700;
 }
 
 .statsSection {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 2rem;
     width: 100%;
 }
 
 .statItem {
     flex: 1;
-    min-width: 200px;
+    min-width: 180px;
     padding: 2rem;
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);
-    border-radius: 1.5rem;
+    border-radius: 2rem;
     text-align: center;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .statItem:hover {
-    transform: translateX(10px);
+    transform: translateY(-10px);
     border-color: var(--accent-cyan);
     background: rgba(255, 255, 255, 0.05);
 }
 
-.statNumber {
+.statValue {
     display: block;
-    font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
+    font-family: var(--font-heading);
     background: var(--gradient-cyber);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1;
     margin-bottom: 0.5rem;
 }
 
@@ -80,29 +80,8 @@
     letter-spacing: 0.1em;
 }
 
-@media (max-width: 1024px) {
-    .mainContent {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .statsSection {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .statItem {
-        flex: 1;
-        min-width: 150px;
-    }
-}
-
 @media (max-width: 640px) {
-    .textSection {
-        padding: 1.5rem;
-    }
-
     .statItem {
-        width: 100%;
+        min-width: 100%;
     }
 }

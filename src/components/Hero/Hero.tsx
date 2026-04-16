@@ -59,8 +59,7 @@ export default function Hero() {
                         </div>
 
                         <h1 className={styles.title}>
-                            Crafting Digital <br />
-                            <span className={styles.gradientText}>Masterpieces</span>
+                            Crafting Digital <span className={styles.gradientText}>Masterpieces</span>
                         </h1>
 
                         <div className={styles.roleWrapper}>

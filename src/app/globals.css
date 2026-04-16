@@ -116,7 +116,7 @@ body::before {
 /* Glass Utility */
 .glass {
   background: var(--bg-glass);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--border-glass);
   border-radius: 1.5rem;
 }
@@ -193,51 +193,60 @@ body::before {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-purple);
 }
+
 /* Background Effects */
 .noise-overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  /* Use a lighter, static noise instead of heavy SVG calc */
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
 }
 
 .ambient-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
-  overflow: hidden;
   background: var(--bg-primary);
+  overflow: hidden;
 }
 
+/* Optimize: Use transform instead of filter animations where possible */
 .ambient-bg::before,
 .ambient-bg::after {
   content: "";
   position: absolute;
-  width: 50vw;
-  height: 50vw;
+  width: 40vw;
+  height: 40vw;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
-  z-index: -1;
-  animation: float-bg 20s infinite alternate;
+  /* Reduce blur size for better perf */
+  filter: blur(80px);
+  opacity: 0.1;
+  will-change: transform;
 }
 
 .ambient-bg::before {
   background: var(--accent-purple);
   top: -10%;
   left: -10%;
+  animation: float-bg 15s infinite alternate ease-in-out;
 }
 
 .ambient-bg::after {
   background: var(--accent-cyan);
   bottom: -10%;
   right: -10%;
-  animation-delay: -10s;
+  animation: float-bg 18s infinite alternate-reverse ease-in-out;
 }
 
 @keyframes float-bg {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(10%, 10%) scale(1.2); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(5%, 5%) scale(1.1);
+  }
 }
