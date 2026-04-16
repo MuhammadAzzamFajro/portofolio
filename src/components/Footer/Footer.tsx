@@ -1,12 +1,12 @@
 import styles from './Footer.module.css';
 
 const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Certificates', href: '#certificates' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Beranda', href: '#home' },
+    { name: 'Tentang', href: '#about' },
+    { name: 'Keahlian', href: '#skills' },
+    { name: 'Proyek', href: '#projects' },
+    { name: 'Sertifikat', href: '#certificates' },
+    { name: 'Kontak', href: '#contact' },
 ];
 
 export default function Footer() {
@@ -22,12 +22,12 @@ export default function Footer() {
                             <span className={styles.logoText}>Portfolio</span>
                         </a>
                         <p className={styles.tagline}>
-                            Creating beautiful digital experiences with passion and precision.
+                            Membangun pengalaman digital yang fungsional dengan presisi dan kualitas.
                         </p>
                     </div>
 
                     <div className={styles.links}>
-                        <h4 className={styles.linksTitle}>Quick Links</h4>
+                        <h4 className={styles.linksTitle}>Navigasi Cepat</h4>
                         <nav className={styles.nav}>
                             {navLinks.map((link) => (
                                 <a key={link.name} href={link.href} className={styles.navLink}>
@@ -38,9 +38,9 @@ export default function Footer() {
                     </div>
 
                     <div className={styles.socials}>
-                        <h4 className={styles.socialsTitle}>Connect</h4>
+                        <h4 className={styles.socialsTitle}>Terhubung</h4>
                         <div className={styles.socialLinks}>
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+                            <a href="https://github.com/MuhammadAzzamFajro" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 19C4 20.5 4 16.5 2 16M16 22V18.13C16.0375 17.6532 15.9731 17.1738 15.811 16.7238C15.6489 16.2738 15.3929 15.8634 15.06 15.52C18.2 15.17 21.5 13.98 21.5 8.52C21.4997 7.12383 20.9627 5.7812 20 4.77C20.4559 3.54851 20.4236 2.19835 19.91 0.999999C19.91 0.999999 18.73 0.649999 16 2.48C13.708 1.85882 11.292 1.85882 9 2.48C6.27 0.649999 5.09 0.999999 5.09 0.999999C4.57638 2.19835 4.54414 3.54851 5 4.77C4.03013 5.7887 3.49252 7.14346 3.5 8.55C3.5 13.97 6.8 15.16 9.94 15.55C9.611 15.89 9.35726 16.2954 9.19531 16.7399C9.03335 17.1844 8.96681 17.6581 9 18.13V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
@@ -69,10 +69,7 @@ export default function Footer() {
 
                 <div className={styles.bottom}>
                     <p className={styles.copyright}>
-                        © {currentYear} Portfolio. All rights reserved.
-                    </p>
-                    <p className={styles.madeWith}>
-                        Made with <span className={styles.heart}>❤️</span> using Next.js
+                        © {currentYear} Portfolio. Semua hak dilindungi.
                     </p>
                 </div>
             </div>

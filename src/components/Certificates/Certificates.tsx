@@ -9,9 +9,6 @@ interface Certificate {
     issuer: string;
     date: string;
     credentialId: string;
-    icon: string;
-    category: string;
-    skills: string[];
     verifyUrl: string;
 }
 
@@ -22,9 +19,6 @@ const certificates: Certificate[] = [
         issuer: 'Amazon Web Services',
         date: 'Dec 2024',
         credentialId: 'AWS-SAA-123456',
-        icon: '☁️',
-        category: 'Cloud',
-        skills: ['AWS', 'Cloud Architecture', 'Infrastructure'],
         verifyUrl: '#',
     },
     {
@@ -33,9 +27,6 @@ const certificates: Certificate[] = [
         issuer: 'Google Cloud',
         date: 'Nov 2024',
         credentialId: 'GCP-DEV-789012',
-        icon: '🌐',
-        category: 'Cloud',
-        skills: ['GCP', 'Cloud Functions', 'Docker'],
         verifyUrl: '#',
     },
     {
@@ -44,9 +35,6 @@ const certificates: Certificate[] = [
         issuer: 'Meta (Coursera)',
         date: 'Oct 2024',
         credentialId: 'META-FE-345678',
-        icon: '⚛️',
-        category: 'Frontend',
-        skills: ['React', 'JavaScript', 'UI/UX'],
         verifyUrl: '#',
     },
     {
@@ -55,9 +43,6 @@ const certificates: Certificate[] = [
         issuer: 'MongoDB University',
         date: 'Sep 2024',
         credentialId: 'MDB-DEV-901234',
-        icon: '🍃',
-        category: 'Backend',
-        skills: ['MongoDB', 'Database Design', 'Aggregation'],
         verifyUrl: '#',
     },
     {
@@ -66,9 +51,6 @@ const certificates: Certificate[] = [
         issuer: 'Docker Inc.',
         date: 'Aug 2024',
         credentialId: 'DCA-567890',
-        icon: '🐳',
-        category: 'DevOps',
-        skills: ['Docker', 'Containers', 'Orchestration'],
         verifyUrl: '#',
     },
     {
@@ -77,9 +59,6 @@ const certificates: Certificate[] = [
         issuer: 'Cloud Native Computing Foundation',
         date: 'Jul 2024',
         credentialId: 'CKA-123456',
-        icon: '⚙️',
-        category: 'DevOps',
-        skills: ['Kubernetes', 'Container Orchestration', 'CI/CD'],
         verifyUrl: '#',
     },
     {
@@ -88,9 +67,6 @@ const certificates: Certificate[] = [
         issuer: 'Scrum.org',
         date: 'Jun 2024',
         credentialId: 'PSM-789012',
-        icon: '📋',
-        category: 'Management',
-        skills: ['Scrum', 'Agile', 'Project Management'],
         verifyUrl: '#',
     },
     {
@@ -99,64 +75,34 @@ const certificates: Certificate[] = [
         issuer: 'Python Institute',
         date: 'May 2024',
         credentialId: 'PCAP-345678',
-        icon: '🐍',
-        category: 'Backend',
-        skills: ['Python', 'OOP', 'Data Structures'],
         verifyUrl: '#',
     },
 ];
 
-const categories = ['All', 'Cloud', 'Frontend', 'Backend', 'DevOps', 'Management'];
-
 export default function Certificates() {
-    const [activeCategory, setActiveCategory] = useState('All');
     const [hoveredId, setHoveredId] = useState<number | null>(null);
-
-    const filteredCertificates = certificates.filter(
-        cert => activeCategory === 'All' || cert.category === activeCategory
-    );
 
     return (
         <section id="certificates" className={styles.certificates}>
-            <div className={styles.container}>
-                <div className={styles.header}>
-                    <span className={styles.label}>Achievements</span>
-                    <h2 className={styles.title}>
-                        Professional <span className={styles.highlight}>Certifications</span>
-                    </h2>
-                    <p className={styles.description}>
-                        Recognized certifications that validate my expertise and commitment to continuous learning
+            <div className="container">
+                <header className="section-heading">
+                    <span className="section-label">Achievements</span>
+                    <h2 className="section-title">Verified <br /> Certifications</h2>
+                    <p className="section-subtitle">
+                        A validation of my technical competence and ongoing commitment
+                        to professional growth in the cloud ecosystem.
                     </p>
-                </div>
-
-                <div className={styles.filters}>
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            className={`${styles.filterBtn} ${activeCategory === category ? styles.active : ''}`}
-                            onClick={() => setActiveCategory(category)}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
+                </header>
 
                 <div className={styles.grid}>
-                    {filteredCertificates.map((cert, index) => (
+                    {certificates.map((cert, index) => (
                         <div
                             key={cert.id}
-                            className={`${styles.certCard} ${hoveredId === cert.id ? styles.hovered : ''}`}
+                            className={`${styles.certCard} glass ${hoveredId === cert.id ? styles.hovered : ''}`}
                             style={{ animationDelay: `${index * 0.1}s` }}
                             onMouseEnter={() => setHoveredId(cert.id)}
                             onMouseLeave={() => setHoveredId(null)}
                         >
-                            <div className={styles.certHeader}>
-                                <div className={styles.certIcon}>
-                                    <span>{cert.icon}</span>
-                                </div>
-                                <div className={styles.certBadge}>{cert.category}</div>
-                            </div>
-
                             <div className={styles.certBody}>
                                 <h3 className={styles.certTitle}>{cert.title}</h3>
                                 <div className={styles.certIssuer}>
@@ -184,12 +130,6 @@ export default function Certificates() {
                                 </div>
                             </div>
 
-                            <div className={styles.certSkills}>
-                                {cert.skills.map((skill) => (
-                                    <span key={skill} className={styles.skillTag}>{skill}</span>
-                                ))}
-                            </div>
-
                             <div className={styles.certFooter}>
                                 <a href={cert.verifyUrl} className={styles.verifyBtn} target="_blank" rel="noopener noreferrer">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,28 +137,13 @@ export default function Certificates() {
                                         <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                         <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
-                                    Verify Credential
+                                    Verifikasi Kredensial
                                 </a>
                             </div>
 
                             <div className={styles.shine}></div>
                         </div>
                     ))}
-                </div>
-
-                <div className={styles.stats}>
-                    <div className={styles.statItem}>
-                        <span className={styles.statNumber}>15+</span>
-                        <span className={styles.statLabel}>Certifications</span>
-                    </div>
-                    <div className={styles.statItem}>
-                        <span className={styles.statNumber}>8</span>
-                        <span className={styles.statLabel}>Vendors</span>
-                    </div>
-                    <div className={styles.statItem}>
-                        <span className={styles.statNumber}>100%</span>
-                        <span className={styles.statLabel}>Pass Rate</span>
-                    </div>
                 </div>
             </div>
         </section>

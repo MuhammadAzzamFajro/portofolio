@@ -35,38 +35,36 @@ export default function Contact() {
         <section id="contact" className={styles.contact}>
             <div className={styles.container}>
                 <div className={styles.content}>
-                    <span className={styles.label}>Get In Touch</span>
-                    <h2 className={styles.title}>
-                        Let&apos;s Work <span className={styles.highlight}>Together</span>
-                    </h2>
-                    <p className={styles.description}>
-                        Have a project in mind or just want to say hello? Feel free to reach out.
-                        I&apos;m always open to discussing new opportunities and ideas.
+                    <span className="section-label">Connect</span>
+                    <h2 className="section-title">Let's Create <br /> Something Great</h2>
+                    <p className="section-subtitle">
+                        Have a project in mind or just want to say hello?
+                        Feel free to reach out and let's start a conversation.
                     </p>
 
                     <div className={styles.contactInfo}>
-                        <div className={styles.infoCard}>
+                        <div className={`${styles.infoCard} glass`}>
                             <div className={styles.infoIcon}>📧</div>
                             <div className={styles.infoContent}>
                                 <span className={styles.infoLabel}>Email</span>
                                 <a href="mailto:hello@example.com" className={styles.infoValue}>hello@example.com</a>
                             </div>
                         </div>
-                        <div className={styles.infoCard}>
+                        <div className={`${styles.infoCard} glass`}>
                             <div className={styles.infoIcon}>📍</div>
                             <div className={styles.infoContent}>
-                                <span className={styles.infoLabel}>Location</span>
+                                <span className={styles.infoLabel}>Lokasi</span>
                                 <span className={styles.infoValue}>Jakarta, Indonesia</span>
                             </div>
                         </div>
-                        <div className={styles.infoCard}>
+                        <div className={`${styles.infoCard} glass`}>
                             <div className={styles.infoIcon}>💼</div>
                             <div className={styles.infoContent}>
                                 <span className={styles.infoLabel}>Status</span>
-                                <span className={`${styles.infoValue} ${styles.available}`}>
+                                <div className={styles.available}>
                                     <span className={styles.dot}></span>
-                                    Available for hire
-                                </span>
+                                    <span className={styles.availableText}>Available for Projects</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,9 +97,9 @@ export default function Contact() {
                 </div>
 
                 <div className={styles.formWrapper}>
-                    <form className={styles.form} onSubmit={handleSubmit}>
+                    <form className={`${styles.form} glass`} onSubmit={handleSubmit}>
                         <div className={styles.formGroup}>
-                            <label htmlFor="name" className={styles.formLabel}>Your Name</label>
+                            <label htmlFor="name" className={styles.formLabel}>Nama</label>
                             <input
                                 type="text"
                                 id="name"
@@ -110,11 +108,11 @@ export default function Contact() {
                                 onChange={handleChange}
                                 required
                                 className={styles.formInput}
-                                placeholder="John Doe"
+                                placeholder="Nama Anda"
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="email" className={styles.formLabel}>Email Address</label>
+                            <label htmlFor="email" className={styles.formLabel}>Alamat Email</label>
                             <input
                                 type="email"
                                 id="email"
@@ -127,7 +125,7 @@ export default function Contact() {
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="subject" className={styles.formLabel}>Subject</label>
+                            <label htmlFor="subject" className={styles.formLabel}>Subjek</label>
                             <input
                                 type="text"
                                 id="subject"
@@ -136,11 +134,11 @@ export default function Contact() {
                                 onChange={handleChange}
                                 required
                                 className={styles.formInput}
-                                placeholder="Project Inquiry"
+                                placeholder="Kebutuhan Proyek"
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="message" className={styles.formLabel}>Message</label>
+                            <label htmlFor="message" className={styles.formLabel}>Pesan</label>
                             <textarea
                                 id="message"
                                 name="message"
@@ -148,30 +146,30 @@ export default function Contact() {
                                 onChange={handleChange}
                                 required
                                 className={styles.formTextarea}
-                                placeholder="Tell me about your project..."
+                                placeholder="Ceritakan kebutuhan proyek Anda..."
                                 rows={5}
                             ></textarea>
                         </div>
                         <button
                             type="submit"
-                            className={`${styles.submitBtn} ${isSubmitting ? styles.submitting : ''}`}
+                            className={`btn-premium ${isSubmitting ? styles.submitting : ''}`}
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? (
                                 <>
                                     <span className={styles.spinner}></span>
-                                    Sending...
+                                    Mengirim...
                                 </>
                             ) : submitted ? (
                                 <>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
-                                    Message Sent!
+                                    Pesan Terkirim!
                                 </>
                             ) : (
                                 <>
-                                    Send Message
+                                    Kirim Pesan
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                         <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

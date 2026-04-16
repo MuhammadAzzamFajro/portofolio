@@ -50,27 +50,26 @@ const projects: Project[] = [
     },
 ];
 
-const categories = ['All', 'Web App', 'Mobile', 'AI/ML'];
+const categories = ['Semua', 'Web App', 'Mobile', 'AI/ML'];
 
 export default function Projects() {
-    const [activeCategory, setActiveCategory] = useState('All');
+    const [activeCategory, setActiveCategory] = useState('Semua');
 
     const filteredProjects = projects.filter(
-        project => activeCategory === 'All' || project.category === activeCategory
+        project => activeCategory === 'Semua' || project.category === activeCategory
     );
 
     return (
         <section id="projects" className={styles.projects}>
-            <div className={styles.container}>
-                <div className={styles.header}>
-                    <span className={styles.label}>My Work</span>
-                    <h2 className={styles.title}>
-                        Featured <span className={styles.highlight}>Projects</span>
-                    </h2>
-                    <p className={styles.description}>
-                        A selection of projects that demonstrate my passion for building high-quality software
+            <div className="container">
+                <header className="section-heading">
+                    <span className="section-label">Selected Works</span>
+                    <h2 className="section-title">Built with <br /> Precision</h2>
+                    <p className="section-subtitle">
+                        A curated collection of projects that demonstrate my commitment
+                        to engineering excellence and user-centric design.
                     </p>
-                </div>
+                </header>
 
                 <div className={styles.filters}>
                     {categories.map((category) => (
@@ -88,19 +87,19 @@ export default function Projects() {
                     {filteredProjects.map((project, index) => (
                         <div
                             key={project.id}
-                            className={`${styles.projectCard} ${project.isFeatured ? styles.featured : ''}`}
+                            className={`${styles.projectCard} glass ${project.isFeatured ? styles.featured : ''}`}
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             <div className={styles.projectImage}>
                                 <span className={styles.projectEmoji}>{project.image}</span>
-                                {project.isFeatured && <span className={styles.featuredBadge}>Featured</span>}
+                                {project.isFeatured && <span className={styles.featuredBadge}>Unggulan</span>}
                                 <div className={styles.overlay}>
                                     <div className={styles.overlayButtons}>
                                         <a href={project.liveUrl} className={styles.overlayBtn} target="_blank" rel="noopener noreferrer">
-                                            <FaExternalLinkAlt /> Live Demo
+                                            <FaExternalLinkAlt /> Demo Langsung
                                         </a>
                                         <a href={project.githubUrl} className={styles.overlayBtn} target="_blank" rel="noopener noreferrer">
-                                            <FaGithub /> Source
+                                            <FaGithub /> Sumber
                                         </a>
                                     </div>
                                 </div>

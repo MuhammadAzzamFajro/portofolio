@@ -3,7 +3,8 @@ import { Navbar, Hero, About, Skills, Projects, Certificates, Contact, Footer } 
 export default function Home() {
   return (
     <>
-      <div className="bg-gradient" />
+      <div className="noise-overlay" />
+      <div className="ambient-bg" />
       <Navbar />
       <main>
         <Hero />

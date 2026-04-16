@@ -1,79 +1,84 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import styles from './About.module.css';
 
 export default function About() {
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(styles.visible);
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <section id="about" className={styles.about}>
-            <div className={styles.container}>
-                <div className={styles.content}>
-                    <span className={styles.label}>About Me</span>
-                    <h2 className={styles.title}>
-                        Crafting Digital Experiences with <span className={styles.highlight}>Passion</span>
-                    </h2>
+        <section id="about" className={styles.about} ref={sectionRef}>
+            <div className="container">
+                <header className="section-heading">
+                    <span className="section-label">Biography</span>
+                    <h2 className="section-title">Azzam Fajro</h2>
+                    <p className="section-subtitle">
+                        A dedicated software engineer crafting scalable solutions and
+                        seamless digital experiences.
+                    </p>
+                </header>
 
-                    <div className={styles.text}>
-                        <p>
-                            I&apos;m a creative developer based in Indonesia with a passion for building
-                            beautiful and functional web applications. With over 5 years of experience
-                            in the industry, I&apos;ve had the privilege of working with startups and
-                            established companies alike.
+                <div className={styles.mainContent}>
+                    <div className={styles.textSection}>
+                        <p className={styles.paragraph}>
+                            Developer berbasis di Indonesia dengan pengalaman hands-on dalam pengembangan solusi teknologi
+                            yang scalable dan user-centric. Saat ini menjalani internship di PT Ubig.id, berkontribusi pada
+                            proyek-proyek yang menuntut inovasi dan deliverables berdampak nyata.
                         </p>
-                        <p>
-                            My approach combines technical expertise with creative problem-solving.
-                            I believe that great software is not just about writing code—it&apos;s about
-                            understanding users, crafting intuitive experiences, and delivering
-                            solutions that make a real impact.
+                        <p className={styles.paragraph}>
+                            Filosofi Kerja: Saya meyakini bahwa software excellence lahir dari perpaduan teknis yang kuat
+                            dan empati terhadap pengguna. Setiap baris kode harus melayani tujuan bisnis sekaligus pengalaman
+                            pengguna yang seamless.
                         </p>
-                        <p>
-                            When I&apos;m not coding, you can find me exploring new technologies,
-                            contributing to open-source projects, or sharing knowledge with the
-                            developer community.
+                        <p className={styles.paragraph}>
+                            Beyond Coding: Aktif mengikuti perkembangan teknologi terkini, berkontribusi pada ekosistem
+                            open-source, dan berbagi pengetahuan dengan komunitas developer. Komitmen pada continuous learning
+                            dan collaborative growth.
                         </p>
                     </div>
 
-                    <div className={styles.features}>
-                        <div className={styles.feature}>
-                            <div className={styles.featureIcon}>🎯</div>
-                            <div className={styles.featureContent}>
-                                <h4>Problem Solver</h4>
-                                <p>I love tackling complex challenges and finding elegant solutions</p>
-                            </div>
+                    <div className={styles.statsSection}>
+                        <div className={styles.statItem}>
+                            <span className={styles.statNumber}>01</span>
+                            <span className={styles.statLabel}>Peran Internship</span>
                         </div>
-                        <div className={styles.feature}>
-                            <div className={styles.featureIcon}>📚</div>
-                            <div className={styles.featureContent}>
-                                <h4>Continuous Learner</h4>
-                                <p>Always exploring new technologies and improving my skills</p>
-                            </div>
+                        <div className={styles.statItem}>
+                            <span className={styles.statNumber}>03</span>
+                            <span className={styles.statLabel}>Fokus Utama: Scalable, User-Centric, Impactful</span>
                         </div>
-                        <div className={styles.feature}>
-                            <div className={styles.featureIcon}>🤝</div>
-                            <div className={styles.featureContent}>
-                                <h4>Team Player</h4>
-                                <p>Strong believer in collaboration and knowledge sharing</p>
-                            </div>
+                        <div className={styles.statItem}>
+                            <span className={styles.statNumber}>100%</span>
+                            <span className={styles.statLabel}>Komitmen pada Continuous Learning</span>
                         </div>
-                    </div>
-                </div>
-
-                <div className={styles.visual}>
-                    <div className={styles.infoCards}>
-                        <div className={styles.infoCard}>
-                            <span className={styles.infoNumber}>5+</span>
-                            <span className={styles.infoLabel}>Years of Experience</span>
-                        </div>
-                        <div className={styles.infoCard}>
-                            <span className={styles.infoNumber}>50+</span>
-                            <span className={styles.infoLabel}>Projects Delivered</span>
-                        </div>
-                        <div className={styles.infoCard}>
-                            <span className={styles.infoNumber}>30+</span>
-                            <span className={styles.infoLabel}>Happy Clients</span>
-                        </div>
-                        <div className={styles.infoCard}>
-                            <span className={styles.infoNumber}>15+</span>
-                            <span className={styles.infoLabel}>Certifications</span>
+                        <div className={styles.statItem}>
+                            <span className={styles.statNumber}>24/7</span>
+                            <span className={styles.statLabel}>Kolaborasi dan Berbagi Pengetahuan</span>
                         </div>
                     </div>
                 </div>

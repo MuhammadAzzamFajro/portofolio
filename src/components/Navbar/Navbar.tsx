@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Certificates', href: '#certificates' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Beranda', href: '#home' },
+  { name: 'Tentang', href: '#about' },
+  { name: 'Keahlian', href: '#skills' },
+  { name: 'Proyek', href: '#projects' },
+  { name: 'Sertifikat', href: '#certificates' },
+  { name: 'Kontak', href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -18,25 +18,41 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const sectionIds = navLinks.map((link) => link.href.slice(1));
 
-      // Update active section based on scroll position
-      const sections = navLinks.map(link => link.href.slice(1));
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
+    const syncFromHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (sectionIds.includes(hash)) {
+        setActiveSection(hash);
       }
     };
 
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+
+      // Update active section based on current viewport
+      const marker = window.scrollY + 140;
+      let current = 'home';
+
+      for (const section of sectionIds) {
+        const element = document.getElementById(section);
+        if (element && marker >= element.offsetTop) {
+          current = section;
+        }
+      }
+
+      setActiveSection(current);
+    };
+
+    syncFromHash();
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('hashchange', syncFromHash);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', syncFromHash);
+    };
   }, []);
 
   return (
@@ -53,7 +69,10 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={`${styles.navLink} ${activeSection === link.href.slice(1) ? styles.activeLink : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setActiveSection(link.href.slice(1));
+                setIsMobileMenuOpen(false);
+              }}
             >
               {link.name}
             </a>
@@ -63,7 +82,7 @@ export default function Navbar() {
         <button
           className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.active : ''}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Buka tutup menu"
         >
           <span></span>
           <span></span>
