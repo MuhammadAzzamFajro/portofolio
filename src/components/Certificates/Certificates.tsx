@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import styles from './Certificates.module.css';
 
 interface Certificate {
@@ -10,73 +11,73 @@ interface Certificate {
     date: string;
     credentialId: string;
     verifyUrl: string;
+    image?: string;
 }
 
 const certificates: Certificate[] = [
     {
         id: 1,
-        title: 'AWS Certified Solutions Architect',
-        issuer: 'Amazon Web Services',
-        date: 'Dec 2024',
-        credentialId: 'AWS-SAA-123456',
-        verifyUrl: '#',
+        title: 'Peserta DLC ANFORCOM 2025: Digital Innovation for Prosperous Urban Growth',
+        issuer: 'Universitas Diponegoro (FSM)',
+        date: '20 Sep 2025',
+        credentialId: '363/UN7.F8/HK/IX/2025',
+        verifyUrl: '/certificates/anforcom.pdf',
+        image: '/certificates/anforcom.png'
     },
     {
         id: 2,
-        title: 'Google Professional Cloud Developer',
-        issuer: 'Google Cloud',
-        date: 'Nov 2024',
-        credentialId: 'GCP-DEV-789012',
-        verifyUrl: '#',
+        title: 'Participant of JHIC 2025',
+        issuer: 'Jagoan Hosting Infra Competition (JHIC)',
+        date: '08 - 17 Nov 2025',
+        credentialId: 'JHIC-2025-PARTICIPANT',
+        verifyUrl: '/certificates/jhic.pdf',
+        image: '/certificates/jhic.png'
     },
     {
         id: 3,
-        title: 'Meta Frontend Developer Professional',
-        issuer: 'Meta (Coursera)',
-        date: 'Oct 2024',
-        credentialId: 'META-FE-345678',
-        verifyUrl: '#',
+        title: 'Belajar Dasar Pemrograman Web',
+        issuer: 'Dicoding Indonesia',
+        date: '06 Nov 2024',
+        credentialId: '53XEQK2QYXRN',
+        verifyUrl: '/certificates/dicoding.pdf',
+        image: '/certificates/dicoding.png'
     },
     {
         id: 4,
-        title: 'MongoDB Certified Developer',
-        issuer: 'MongoDB University',
-        date: 'Sep 2024',
-        credentialId: 'MDB-DEV-901234',
-        verifyUrl: '#',
+        title: 'Java (Basic) Certificate',
+        issuer: 'SoloLearn',
+        date: '2024',
+        credentialId: 'SOLO-JAVA-BASIC',
+        verifyUrl: '/certificates/java.png',
+        image: '/certificates/java.png'
     },
     {
         id: 5,
-        title: 'Docker Certified Associate',
-        issuer: 'Docker Inc.',
-        date: 'Aug 2024',
-        credentialId: 'DCA-567890',
-        verifyUrl: '#',
+        title: 'Python (Basic) Certificate',
+        issuer: 'SoloLearn',
+        date: '2024',
+        credentialId: 'SOLO-PY-BASIC',
+        verifyUrl: '/certificates/py.png',
+        image: '/certificates/py.png'
     },
     {
         id: 6,
-        title: 'Certified Kubernetes Administrator',
-        issuer: 'Cloud Native Computing Foundation',
-        date: 'Jul 2024',
-        credentialId: 'CKA-123456',
-        verifyUrl: '#',
+        title: 'Python (Advanced) Certificate',
+        issuer: 'SoloLearn',
+        date: '2024',
+        credentialId: 'SOLO-PY-ADV',
+        verifyUrl: '/certificates/pyhard.png',
+        image: '/certificates/pyhard.png'
     },
     {
         id: 7,
-        title: 'Professional Scrum Master I',
-        issuer: 'Scrum.org',
-        date: 'Jun 2024',
-        credentialId: 'PSM-789012',
-        verifyUrl: '#',
-    },
-    {
-        id: 8,
-        title: 'Python Professional Certificate',
-        issuer: 'Python Institute',
-        date: 'May 2024',
-        credentialId: 'PCAP-345678',
-        verifyUrl: '#',
-    },
+        title: 'C# (Basic) Certificate',
+        issuer: 'SoloLearn',
+        date: '2024',
+        credentialId: 'SOLO-CS-BASIC',
+        verifyUrl: '/certificates/csharp.png',
+        image: '/certificates/csharp.png'
+    }
 ];
 
 export default function Certificates() {
@@ -103,6 +104,17 @@ export default function Certificates() {
                             onMouseEnter={() => setHoveredId(cert.id)}
                             onMouseLeave={() => setHoveredId(null)}
                         >
+                            {cert.image && (
+                                <div className={styles.certImageWrapper}>
+                                    <Image
+                                        src={cert.image}
+                                        alt={cert.title}
+                                        width={400}
+                                        height={250}
+                                        className={styles.certImage}
+                                    />
+                                </div>
+                            )}
                             <div className={styles.certBody}>
                                 <h3 className={styles.certTitle}>{cert.title}</h3>
                                 <div className={styles.certIssuer}>

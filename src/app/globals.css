@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap');
-
 :root {
   /* Ultra Modern Dark Palette */
   --bg-primary: #030712;
@@ -221,21 +219,19 @@ body::before {
   width: 40vw;
   height: 40vw;
   border-radius: 50%;
-  /* Reduce blur size for better perf */
-  filter: blur(80px);
   opacity: 0.1;
   will-change: transform;
 }
 
 .ambient-bg::before {
-  background: var(--accent-purple);
+  background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
   top: -10%;
   left: -10%;
   animation: float-bg 15s infinite alternate ease-in-out;
 }
 
 .ambient-bg::after {
-  background: var(--accent-cyan);
+  background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
   bottom: -10%;
   right: -10%;
   animation: float-bg 18s infinite alternate-reverse ease-in-out;

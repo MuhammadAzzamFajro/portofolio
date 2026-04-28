@@ -4,19 +4,23 @@
     background: var(--bg-primary);
 }
 
-.container {
+.contactLayout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+    text-align: left;
+}
+
+.content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 850px;
-    margin-inline: auto;
 }
 
 .contactInfo {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1.5rem;
     margin: 3rem 0;
     width: 100%;
@@ -52,6 +56,8 @@
     display: flex;
     flex-direction: column;
     text-align: left;
+    overflow: hidden;
+    width: 100%;
 }
 
 .infoLabel {
@@ -63,10 +69,11 @@
 }
 
 .infoValue {
-    font-size: 1.125rem;
+    font-size: clamp(0.9rem, 1.2vw, 1.125rem);
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
+    word-break: break-word;
 }
 
 .available {
@@ -142,6 +149,29 @@
 
     100% {
         opacity: 1;
+    }
+}
+
+@media (max-width: 968px) {
+    .contactLayout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+        max-width: 600px;
+        margin-inline: auto;
+    }
+
+    .content {
+        align-items: center;
+    }
+
+    .contactInfo {
+        justify-content: center;
+    }
+
+    .infoContent {
+        align-items: center;
+        text-align: center;
     }
 }
 

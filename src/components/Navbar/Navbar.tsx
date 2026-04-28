@@ -27,21 +27,28 @@ export default function Navbar() {
       }
     };
 
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
 
-      // Update active section based on current viewport
-      const marker = window.scrollY + 140;
-      let current = 'home';
+          // Update active section based on current viewport
+          const marker = window.scrollY + 140;
+          let current = 'home';
 
-      for (const section of sectionIds) {
-        const element = document.getElementById(section);
-        if (element && marker >= element.offsetTop) {
-          current = section;
-        }
+          for (const section of sectionIds) {
+            const element = document.getElementById(section);
+            if (element && marker >= element.offsetTop) {
+              current = section;
+            }
+          }
+
+          setActiveSection(current);
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      setActiveSection(current);
     };
 
     syncFromHash();
@@ -63,16 +70,13 @@ export default function Navbar() {
           <span className={styles.logoText}>Portfolio</span>
         </a>
 
-        <div className={`${styles.navLinks} ${isMobileMenuOpen ? styles.active : ''}`}>
+        <div className={styles.desktopNav}>
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               className={`${styles.navLink} ${activeSection === link.href.slice(1) ? styles.activeLink : ''}`}
-              onClick={() => {
-                setActiveSection(link.href.slice(1));
-                setIsMobileMenuOpen(false);
-              }}
+              onClick={() => setActiveSection(link.href.slice(1))}
             >
               {link.name}
             </a>
@@ -88,6 +92,25 @@ export default function Navbar() {
           <span></span>
           <span></span>
         </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`${styles.mobileNav} ${isMobileMenuOpen ? styles.active : ''}`}>
+        <div className={styles.mobileNavContent}>
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className={`${styles.mobileNavLink} ${activeSection === link.href.slice(1) ? styles.activeLink : ''}`}
+              onClick={() => {
+                setActiveSection(link.href.slice(1));
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   );

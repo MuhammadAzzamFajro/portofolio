@@ -62,12 +62,12 @@
     overflow: hidden;
 }
 
-.projectEmoji {
-    transition: transform 0.5s ease;
+.actualImage {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.projectCard:hover .projectEmoji {
-    transform: scale(1.2) rotate(5deg);
+.projectCard:hover .actualImage {
+    transform: scale(1.1);
 }
 
 .overlay {

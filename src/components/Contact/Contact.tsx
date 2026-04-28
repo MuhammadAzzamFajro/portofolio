@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Contact.module.css';
 
 export default function Contact() {
@@ -12,6 +12,11 @@ export default function Contact() {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,7 +38,7 @@ export default function Contact() {
 
     return (
         <section id="contact" className={styles.contact}>
-            <div className={styles.container}>
+            <div className={`container ${styles.contactLayout}`}>
                 <div className={styles.content}>
                     <span className="section-label">Connect</span>
                     <h2 className="section-title">Let's Create <br /> Something Great</h2>
@@ -47,14 +52,14 @@ export default function Contact() {
                             <div className={styles.infoIcon}>📧</div>
                             <div className={styles.infoContent}>
                                 <span className={styles.infoLabel}>Email</span>
-                                <a href="mailto:hello@example.com" className={styles.infoValue}>hello@example.com</a>
+                                <a href="mailto:muhammadazzamfajro@gmail.com" className={styles.infoValue}>muhammadazzamfajro@gmail.com</a>
                             </div>
                         </div>
                         <div className={`${styles.infoCard} glass`}>
                             <div className={styles.infoIcon}>📍</div>
                             <div className={styles.infoContent}>
                                 <span className={styles.infoLabel}>Lokasi</span>
-                                <span className={styles.infoValue}>Jakarta, Indonesia</span>
+                                <span className={styles.infoValue}>Malang, Indonesia</span>
                             </div>
                         </div>
                         <div className={`${styles.infoCard} glass`}>
@@ -97,87 +102,91 @@ export default function Contact() {
                 </div>
 
                 <div className={styles.formWrapper}>
-                    <form className={`${styles.form} glass`} onSubmit={handleSubmit}>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="name" className={styles.formLabel}>Nama</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                className={styles.formInput}
-                                placeholder="Nama Anda"
-                            />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="email" className={styles.formLabel}>Alamat Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className={styles.formInput}
-                                placeholder="john@example.com"
-                            />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="subject" className={styles.formLabel}>Subjek</label>
-                            <input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                value={formData.subject}
-                                onChange={handleChange}
-                                required
-                                className={styles.formInput}
-                                placeholder="Kebutuhan Proyek"
-                            />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="message" className={styles.formLabel}>Pesan</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                required
-                                className={styles.formTextarea}
-                                placeholder="Ceritakan kebutuhan proyek Anda..."
-                                rows={5}
-                            ></textarea>
-                        </div>
-                        <button
-                            type="submit"
-                            className={`btn-premium ${isSubmitting ? styles.submitting : ''}`}
-                            disabled={isSubmitting}
-                        >
-                            {isSubmitting ? (
-                                <>
-                                    <span className={styles.spinner}></span>
-                                    Mengirim...
-                                </>
-                            ) : submitted ? (
-                                <>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                    Pesan Terkirim!
-                                </>
-                            ) : (
-                                <>
-                                    Kirim Pesan
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </>
-                            )}
-                        </button>
-                    </form>
+                    {mounted ? (
+                        <form className={`${styles.form} glass`} onSubmit={handleSubmit}>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="name" className={styles.formLabel}>Nama</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    className={styles.formInput}
+                                    placeholder="Nama Anda"
+                                />
+                            </div>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="email" className={styles.formLabel}>Alamat Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className={styles.formInput}
+                                    placeholder="john@example.com"
+                                />
+                            </div>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="subject" className={styles.formLabel}>Subjek</label>
+                                <input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    required
+                                    className={styles.formInput}
+                                    placeholder="Kebutuhan Proyek"
+                                />
+                            </div>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="message" className={styles.formLabel}>Pesan</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    className={styles.formTextarea}
+                                    placeholder="Ceritakan kebutuhan proyek Anda..."
+                                    rows={5}
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                className={`btn-premium ${isSubmitting ? styles.submitting : ''}`}
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? (
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <span className={styles.spinner}></span>
+                                        Mengirim...
+                                    </span>
+                                ) : submitted ? (
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                        Pesan Terkirim!
+                                    </span>
+                                ) : (
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        Kirim Pesan
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </span>
+                                )}
+                            </button>
+                        </form>
+                    ) : (
+                        <div className={`${styles.form} glass`} style={{ minHeight: '500px' }}></div>
+                    )}
                 </div>
             </div>
         </section>

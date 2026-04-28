@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import styles from './Projects.module.css';
 
@@ -21,8 +22,8 @@ const projects: Project[] = [
         id: 1,
         title: 'Personal Portfolio Website',
         description: 'A modern, high-performance portfolio website built with Next.js 14, React, and TypeScript. Features include a fully responsive design, custom animations, dark mode aesthetics, and dynamic content rendering.',
-        image: '🚀',
-        tags: ['Next.js 14', 'TypeScript', 'React', 'CSS Modules', 'Responsive'],
+        image: '/porto_land.png',
+        tags: ['Next.js 14', 'TypeScript', 'React', 'CSS Modules'],
         category: 'Web App',
         liveUrl: '#',
         githubUrl: '#',
@@ -30,19 +31,19 @@ const projects: Project[] = [
     },
     {
         id: 2,
-        title: 'E-Commerce Dashboard',
-        description: 'A comprehensive admin dashboard for managing online stores, featuring real-time analytics, inventory management, and order tracking.',
-        image: '🛒',
-        tags: ['React', 'Redux', 'Node.js', 'PostgreSQL'],
+        title: 'SIAKAD PLUS (ESCHOOL)',
+        description: 'Sistem Informasi Akademik sekolah berbasis multi-tenant web dengan fitur dashboard terintegrasi, pemantauan pembayaran (fees), dan rekapitulasi data absensi real-time.',
+        image: '/eschool_official.png',
+        tags: ['Laravel', 'Multi-tenant', 'Bootstrap', 'MySQL'],
         category: 'Web App',
-        liveUrl: '#',
+        liveUrl: 'https://eschool.ac.id/',
         githubUrl: '#',
     },
     {
         id: 3,
         title: 'Task Management System',
         description: 'Collaborative task management tool with drag-and-drop kanban boards, team collaboration features, and productivity analytics.',
-        image: '📋',
+        image: '/taskman.png',
         tags: ['Vue.js', 'Firebase', 'Tailwind', 'PWA'],
         category: 'Web App',
         liveUrl: '#',
@@ -58,6 +59,7 @@ export default function Projects() {
     const filteredProjects = projects.filter(
         project => activeCategory === 'Semua' || project.category === activeCategory
     );
+
 
     return (
         <section id="projects" className={styles.projects}>
@@ -91,7 +93,14 @@ export default function Projects() {
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             <div className={styles.projectImage}>
-                                <span className={styles.projectEmoji}>{project.image}</span>
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    layout="fill"
+                                    objectFit="cover"
+                                    objectPosition="center"
+                                    className={styles.actualImage}
+                                />
                                 {project.isFeatured && <span className={styles.featuredBadge}>Unggulan</span>}
                                 <div className={styles.overlay}>
                                     <div className={styles.overlayButtons}>
