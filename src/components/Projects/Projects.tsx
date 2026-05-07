@@ -20,11 +20,11 @@ interface Project {
 const projects: Project[] = [
     {
         id: 1,
-        title: 'Personal Portfolio Website',
-        description: 'A modern, high-performance portfolio website built with Next.js 14, React, and TypeScript. Features include a fully responsive design, custom animations, dark mode aesthetics, and dynamic content rendering.',
+        title: 'Website Portofolio Pribadi',
+        description: 'Website portofolio modern berperforma tinggi yang dibangun dengan Next.js 14, React, dan TypeScript. Mendukung responsivitas penuh, animasi kustom, estetika mode gelap, dan rendering konten dinamis.',
         image: '/porto_land.png',
         tags: ['Next.js 14', 'TypeScript', 'React', 'CSS Modules'],
-        category: 'Web App',
+        category: 'Aplikasi Web',
         liveUrl: '#',
         githubUrl: '#',
         isFeatured: true,
@@ -35,23 +35,21 @@ const projects: Project[] = [
         description: 'Sistem Informasi Akademik sekolah berbasis multi-tenant web dengan fitur dashboard terintegrasi, pemantauan pembayaran (fees), dan rekapitulasi data absensi real-time.',
         image: '/eschool_official.png',
         tags: ['Laravel', 'Multi-tenant', 'Bootstrap', 'MySQL'],
-        category: 'Web App',
+        category: 'Aplikasi Web',
         liveUrl: 'https://eschool.ac.id/',
         githubUrl: '#',
     },
     {
         id: 3,
-        title: 'Task Management System',
-        description: 'Collaborative task management tool with drag-and-drop kanban boards, team collaboration features, and productivity analytics.',
+        title: 'Sistem Manajemen Tugas',
+        description: 'Alat manajemen tugas kolaboratif dengan papan kanban drag-and-drop, fitur kolaborasi tim, dan analitik produktivitas.',
         image: '/taskman.png',
         tags: ['Vue.js', 'Firebase', 'Tailwind', 'PWA'],
-        category: 'Web App',
+        category: 'Aplikasi Web',
         liveUrl: '#',
         githubUrl: '#',
     },
 ];
-
-const categories = ['Semua', 'Web App', 'Mobile', 'AI/ML'];
 
 export default function Projects() {
     const [activeCategory, setActiveCategory] = useState('Semua');
@@ -65,25 +63,14 @@ export default function Projects() {
         <section id="projects" className={styles.projects}>
             <div className="container">
                 <header className="section-heading">
-                    <span className="section-label">Selected Works</span>
-                    <h2 className="section-title">Built with <br /> Precision</h2>
+                    <span className="section-label">Karya Pilihan</span>
+                    <h2 className="section-title">Dibangun dengan <br /> Presisi</h2>
                     <p className="section-subtitle">
-                        A curated collection of projects that demonstrate my commitment
-                        to engineering excellence and user-centric design.
+                        Kumpulan proyek pilihan yang menunjukkan komitmen saya terhadap
+                        keunggulan teknis dan desain yang berpusat pada pengguna.
                     </p>
                 </header>
 
-                <div className={styles.filters}>
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            className={`${styles.filterBtn} ${activeCategory === category ? styles.active : ''}`}
-                            onClick={() => setActiveCategory(category)}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
 
                 <div className={styles.grid}>
                     {filteredProjects.map((project, index) => (

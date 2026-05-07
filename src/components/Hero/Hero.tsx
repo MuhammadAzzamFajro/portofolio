@@ -53,17 +53,12 @@ export default function Hero() {
             <div className={styles.container}>
                 <div className={styles.grid}>
                     <div className={styles.content}>
-                        <div className={styles.badge}>
-                            <div className={styles.pulseDot}></div>
-                            <span>Available for new projects</span>
-                        </div>
-
                         <h1 className={styles.title}>
-                            Crafting Digital <span className={styles.gradientText}>Masterpieces</span>
+                            Menciptakan Karya <span className={styles.gradientText}>Digital Terbaik</span>
                         </h1>
 
                         <div className={styles.roleWrapper}>
-                            <div className={styles.roleHeader}>Specializing in</div>
+                            <div className={styles.roleHeader}>Spesialisasi dalam</div>
                             <div className={styles.roleBody}>
                                 {displayText}
                                 <span className={styles.cursor}>_</span>
@@ -71,20 +66,20 @@ export default function Hero() {
                         </div>
 
                         <p className={styles.description}>
-                            Hi, I'm <strong>Azzam Fajro</strong>. I build high-performance,
-                            accessible, and visually stunning web applications that make
-                            an impact.
+                            Halo, Saya <strong>Azzam Fajro</strong>. Saya membangun aplikasi web berkinerja tinggi,
+                            aksesibel, dan menakjubkan secara visual yang memberikan
+                            dampak nyata.
                         </p>
 
                         <div className={styles.actions}>
                             <a href="#projects" className="btn-premium">
-                                View Projects
+                                Lihat Proyek
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                                     <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </a>
                             <a href="#contact" className={styles.btnSecondary}>
-                                Get in Touch
+                                Hubungi Saya
                             </a>
                         </div>
                     </div>
@@ -104,7 +99,7 @@ export default function Hero() {
                             <div className={`${styles.floatCard} ${styles.card1}`}>
                                 <div className={styles.cardIcon}>⚡</div>
                                 <div className={styles.cardText}>
-                                    <span>Fast Performance</span>
+                                    <span>Performa Cepat</span>
                                     <small>99+ Core Web Vitals</small>
                                 </div>
                             </div>
@@ -112,8 +107,8 @@ export default function Hero() {
                             <div className={`${styles.floatCard} ${styles.card2}`}>
                                 <div className={styles.cardIcon}>🎨</div>
                                 <div className={styles.cardText}>
-                                    <span>Pixel Perfect</span>
-                                    <small>Modern UI/UX</small>
+                                    <span>Piksel Presisi</span>
+                                    <small>UI/UX Modern</small>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +120,7 @@ export default function Hero() {
                 <div className={styles.mouse}>
                     <div className={styles.wheel}></div>
                 </div>
-                <span>SCROLL</span>
+                <span>GULIR</span>
             </div>
         </section>
     );

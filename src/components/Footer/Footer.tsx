@@ -19,7 +19,7 @@ export default function Footer() {
                     <div className={styles.brand}>
                         <a href="#home" className={styles.logo}>
                             <span className={styles.logoIcon}>✦</span>
-                            <span className={styles.logoText}>Portfolio</span>
+                            <span className={styles.logoText}>Portofolio</span>
                         </a>
                         <p className={styles.tagline}>
                             Membangun pengalaman digital yang fungsional dengan presisi dan kualitas.
@@ -52,12 +52,14 @@ export default function Footer() {
                                     <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </a>
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+                            <a href="https://instagram.com/zammfjr" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M23 3C22.0424 3.67548 20.9821 4.19211 19.86 4.53C19.2577 3.83751 18.4573 3.34669 17.567 3.12393C16.6767 2.90116 15.7395 2.9572 14.8821 3.28445C14.0247 3.61171 13.2884 4.1944 12.773 4.95372C12.2575 5.71303 11.9877 6.61234 12 7.53V8.53C10.2426 8.57557 8.50127 8.18581 6.93101 7.39545C5.36074 6.60508 4.01032 5.43864 3 4C3 4 -1 13 8 17C5.94053 18.398 3.48716 19.0989 1 19C10 24 21 19 21 7.5C20.9991 7.22145 20.9723 6.94359 20.92 6.67C21.9406 5.66349 22.6608 4.39271 23 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </a>
-                            <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+                            <a href="https://dribbble.com/muhammad-azzam-fajro" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
                                     <path d="M8.56 2.75C12.93 8.78 14.58 12.17 16.59 20.47M19.13 5.09C15.41 9.44 10.19 10.75 2.25 10.94M21.75 12.84C18.25 11.91 15.12 12.02 12.81 12.84C10.23 13.76 7.8 15.7 5.37 19.16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

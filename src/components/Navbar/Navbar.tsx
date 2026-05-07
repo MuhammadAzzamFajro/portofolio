@@ -67,7 +67,7 @@ export default function Navbar() {
       <div className={styles.container}>
         <a href="#home" className={styles.logo}>
           <span className={styles.logoIcon}>✦</span>
-          <span className={styles.logoText}>Portfolio</span>
+          <span className={styles.logoText}>Portofolio</span>
         </a>
 
         <div className={styles.desktopNav}>

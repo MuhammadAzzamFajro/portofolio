@@ -48,7 +48,7 @@
 
 .projectCard:hover {
     transform: translateY(-12px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-premium);
 }
 
 .projectImage {
@@ -73,7 +73,7 @@
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(3, 7, 18, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -97,8 +97,8 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem 1.5rem;
-    background: white;
-    color: black;
+    background: var(--text-primary);
+    color: var(--bg-primary);
     border-radius: 0.75rem;
     font-weight: 700;
     text-decoration: none;
@@ -147,7 +147,7 @@
 
 .tag {
     padding: 0.25rem 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.03);
     border: 1px solid var(--border-glass);
     border-radius: 4px;
     font-size: 0.75rem;

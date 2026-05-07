@@ -40,11 +40,11 @@ export default function Contact() {
         <section id="contact" className={styles.contact}>
             <div className={`container ${styles.contactLayout}`}>
                 <div className={styles.content}>
-                    <span className="section-label">Connect</span>
-                    <h2 className="section-title">Let's Create <br /> Something Great</h2>
+                    <span className="section-label">Hubungi</span>
+                    <h2 className="section-title">Mari Berkreasi <br /> Bersama</h2>
                     <p className="section-subtitle">
-                        Have a project in mind or just want to say hello?
-                        Feel free to reach out and let's start a conversation.
+                        Punya ide proyek atau sekadar ingin menyapa?
+                        Silakan hubungi saya dan mari mulai percakapan.
                     </p>
 
                     <div className={styles.contactInfo}>
@@ -68,7 +68,7 @@ export default function Contact() {
                                 <span className={styles.infoLabel}>Status</span>
                                 <div className={styles.available}>
                                     <span className={styles.dot}></span>
-                                    <span className={styles.availableText}>Available for Projects</span>
+                                    <span className={styles.availableText}>Tersedia untuk Proyek</span>
                                 </div>
                             </div>
                         </div>

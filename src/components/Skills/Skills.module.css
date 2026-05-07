@@ -23,12 +23,12 @@
     display: flex;
     gap: 1.5rem;
     width: max-content;
-    animation: scrollLeft 60s linear infinite;
+    animation: scrollLeft 30s linear infinite;
     padding: 1rem 0;
 }
 
 .carouselTrack.reverse {
-    animation: scrollRight 60s linear infinite;
+    animation: scrollRight 30s linear infinite;
 }
 
 .carouselTrack.paused {
@@ -48,8 +48,8 @@
 .skillCard:hover {
     border-color: var(--accent-cyan);
     transform: translateY(-8px) scale(1.05);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 255, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+    box-shadow: var(--shadow-premium), 0 0 20px rgba(0, 102, 255, 0.1);
 }
 
 .skillIcon {

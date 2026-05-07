@@ -26,7 +26,7 @@ const certificates: Certificate[] = [
     },
     {
         id: 2,
-        title: 'Participant of JHIC 2025',
+        title: 'Peserta JHIC 2025',
         issuer: 'Jagoan Hosting Infra Competition (JHIC)',
         date: '08 - 17 Nov 2025',
         credentialId: 'JHIC-2025-PARTICIPANT',
@@ -44,7 +44,7 @@ const certificates: Certificate[] = [
     },
     {
         id: 4,
-        title: 'Java (Basic) Certificate',
+        title: 'Sertifikat Dasar Java',
         issuer: 'SoloLearn',
         date: '2024',
         credentialId: 'SOLO-JAVA-BASIC',
@@ -53,7 +53,7 @@ const certificates: Certificate[] = [
     },
     {
         id: 5,
-        title: 'Python (Basic) Certificate',
+        title: 'Sertifikat Dasar Python',
         issuer: 'SoloLearn',
         date: '2024',
         credentialId: 'SOLO-PY-BASIC',
@@ -62,7 +62,7 @@ const certificates: Certificate[] = [
     },
     {
         id: 6,
-        title: 'Python (Advanced) Certificate',
+        title: 'Sertifikat Lanjut Python',
         issuer: 'SoloLearn',
         date: '2024',
         credentialId: 'SOLO-PY-ADV',
@@ -71,7 +71,7 @@ const certificates: Certificate[] = [
     },
     {
         id: 7,
-        title: 'C# (Basic) Certificate',
+        title: 'Sertifikat Dasar C#',
         issuer: 'SoloLearn',
         date: '2024',
         credentialId: 'SOLO-CS-BASIC',
@@ -87,11 +87,11 @@ export default function Certificates() {
         <section id="certificates" className={styles.certificates}>
             <div className="container">
                 <header className="section-heading">
-                    <span className="section-label">Achievements</span>
-                    <h2 className="section-title">Verified <br /> Certifications</h2>
+                    <span className="section-label">Pencapaian</span>
+                    <h2 className="section-title">Sertifikat <br /> Terverifikasi</h2>
                     <p className="section-subtitle">
-                        A validation of my technical competence and ongoing commitment
-                        to professional growth in the cloud ecosystem.
+                        Validasi kompetensi teknis saya dan komitmen berkelanjutan terhadap
+                        pertumbuhan profesional di ekosistem digital.
                     </p>
                 </header>
 

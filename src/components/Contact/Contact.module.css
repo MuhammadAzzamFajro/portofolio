@@ -135,7 +135,8 @@
 .formTextarea:focus {
     outline: none;
     border-color: var(--accent-cyan);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-primary);
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.1);
 }
 
 @keyframes flash {

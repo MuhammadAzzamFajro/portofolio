@@ -28,9 +28,9 @@ const skills: Skill[] = [
     { name: 'MongoDB', icon: <SiMongodb />, category: 'Backend', color: '#47A248' },
 
     // Tools
-    { name: 'Git', icon: <FaGit />, category: 'Tools', color: '#F05032' },
-    { name: 'Docker', icon: <FaDocker />, category: 'Tools', color: '#2496ED' },
-    { name: 'Figma', icon: <FaFigma />, category: 'Tools', color: '#F24E1E' },
+    { name: 'Git', icon: <FaGit />, category: 'Lainnya', color: '#F05032' },
+    { name: 'Docker', icon: <FaDocker />, category: 'Lainnya', color: '#2496ED' },
+    { name: 'Figma', icon: <FaFigma />, category: 'Lainnya', color: '#F24E1E' },
 ];
 
 export default function Skills() {
@@ -48,11 +48,11 @@ export default function Skills() {
         <section id="skills" className={styles.skills}>
             <div className="container">
                 <header className="section-heading">
-                    <span className="section-label">Expertise</span>
-                    <h2 className="section-title">Technological <br /> Stack</h2>
+                    <span className="section-label">Keahlian</span>
+                    <h2 className="section-title">Stack <br /> Teknologi</h2>
                     <p className="section-subtitle">
-                        I leverage a modern ecosystem of tools to build resilient,
-                        scalable, and user-centric solutions.
+                        Saya memanfaatkan ekosistem alat modern untuk membangun solusi yang tangguh,
+                        skalabel, dan berpusat pada pengguna.
                     </p>
                 </header>
 

@@ -36,11 +36,11 @@ export default function About() {
         <section id="about" className={styles.about} ref={sectionRef}>
             <div className="container">
                 <header className="section-heading">
-                    <span className="section-label">Biography</span>
+                    <span className="section-label">Biografi</span>
                     <h2 className="section-title">Azzam Fajro</h2>
                     <p className="section-subtitle">
-                        A dedicated software engineer crafting scalable solutions and
-                        seamless digital experiences.
+                        Software engineer yang berdedikasi menciptakan solusi skalabel dan
+                        pengalaman digital yang mulus.
                     </p>
                 </header>
 
@@ -61,25 +61,6 @@ export default function About() {
                             open-source, dan berbagi pengetahuan dengan komunitas developer. Komitmen pada continuous learning
                             dan collaborative growth.
                         </p>
-                    </div>
-
-                    <div className={styles.statsSection}>
-                        <div className={styles.statItem}>
-                            <span className={styles.statNumber}>01</span>
-                            <span className={styles.statLabel}>Peran Internship</span>
-                        </div>
-                        <div className={styles.statItem}>
-                            <span className={styles.statNumber}>03</span>
-                            <span className={styles.statLabel}>Fokus Utama: Scalable, User-Centric, Impactful</span>
-                        </div>
-                        <div className={styles.statItem}>
-                            <span className={styles.statNumber}>100%</span>
-                            <span className={styles.statLabel}>Komitmen pada Continuous Learning</span>
-                        </div>
-                        <div className={styles.statItem}>
-                            <span className={styles.statNumber}>24/7</span>
-                            <span className={styles.statLabel}>Kolaborasi dan Berbagi Pengetahuan</span>
-                        </div>
                     </div>
                 </div>
             </div>
