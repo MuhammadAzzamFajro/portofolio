@@ -49,6 +49,36 @@ const projects: Project[] = [
         liveUrl: '#',
         githubUrl: '#',
     },
+    {
+        id: 4,
+        title: 'F1 Hub',
+        description: 'Portal informasi lengkap Formula 1 yang menyajikan jadwal balapan, klasemen pembalap dan tim, serta berita terkini seputar dunia balap F1.',
+        image: '/f1hub.png',
+        tags: ['React', 'Vite', 'Tailwind CSS', 'Frontend'],
+        category: 'Aplikasi Web',
+        liveUrl: 'https://websitef1-kappa.vercel.app/',
+        githubUrl: '#',
+    },
+    {
+        id: 5,
+        title: 'Java Snake Game',
+        description: 'Game ular klasik yang dibangun menggunakan Java Swing. Menampilkan logika pergerakan grid, deteksi tabrakan, dan sistem skor yang responsif.',
+        image: '/snake_game.png',
+        tags: ['Java', 'Swing', 'Game Dev', 'Logic'],
+        category: 'Desktop App',
+        liveUrl: '/snake',
+        githubUrl: 'https://github.com/MuhammadAzzamFajro/snake-java',
+    },
+    {
+        id: 6,
+        title: 'Sistem Menu Makanan',
+        description: 'Aplikasi manajemen pesanan makanan berbasis Java. Mengimplementasikan logika perhitungan harga otomatis, input porsi dinamais, dan antarmuka interaktif.',
+        image: '/menu_makanan.png',
+        tags: ['Java', 'CLI', 'Algorithm', 'Ordering System'],
+        category: 'Desktop App',
+        liveUrl: '/menu',
+        githubUrl: 'https://github.com/MuhammadAzzamFajro/menu-makanan-java',
+    },
 ];
 
 export default function Projects() {
@@ -70,7 +100,17 @@ export default function Projects() {
                         keunggulan teknis dan desain yang berpusat pada pengguna.
                     </p>
                 </header>
-
+                <div className={styles.filters}>
+                    {['Semua', 'Aplikasi Web', 'Frontend', 'Desktop App'].map((category) => (
+                        <button
+                            key={category}
+                            className={`${styles.filterBtn} ${activeCategory === category ? styles.active : ''}`}
+                            onClick={() => setActiveCategory(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
 
                 <div className={styles.grid}>
                     {filteredProjects.map((project, index) => (
