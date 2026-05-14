@@ -22,8 +22,6 @@ export default function SnakePage() {
                         marginBottom: '2rem',
                         transition: 'color 0.2s'
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#f8fafc')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#94a3b8')}
                 >
                     <FaArrowLeft /> Kembali ke Portofolio
                 </Link>
