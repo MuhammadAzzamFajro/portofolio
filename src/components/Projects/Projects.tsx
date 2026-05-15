@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import styles from './Projects.module.css';
 
@@ -14,6 +15,7 @@ interface Project {
     category: string;
     liveUrl: string;
     githubUrl: string;
+    detailUrl?: string;
 }
 
 const projects: Project[] = [
@@ -22,49 +24,70 @@ const projects: Project[] = [
         title: 'ESCHOOL',
         description: 'Sistem Informasi Akademik sekolah berbasis multi-tenant web.',
         image: '/eschool_official.png',
-        tags: ['Laravel', 'MySQL'],
+        tags: ['Laravel', 'MySQL', 'Multi-tenant'],
         category: 'Aplikasi Web',
         liveUrl: 'https://eschool.ac.id/',
         githubUrl: '#',
     },
     {
         id: 2,
+        title: 'NoctuaNovel',
+        description: 'Platform baca novel online modern dengan fitur scraping real-time, manajemen chapter, dan antarmuka imersif.',
+        image: '/noctua_novel.png',
+        tags: ['Next.js', 'Tailwind', 'Flask', 'Supabase'],
+        category: 'Aplikasi Web',
+        liveUrl: 'https://noctua-novel.vercel.app/',
+        githubUrl: 'https://github.com/SahrulRamadhanHardiansyah/noctua-novel',
+    },
+    {
+        id: 3,
         title: 'F1 Hub',
         description: 'Portal informasi lengkap Formula 1 yang terintegrasi.',
         image: '/f1hub.png',
-        tags: ['React', 'Tailwind'],
+        tags: ['React', 'Tailwind', 'F1 API'],
         category: 'Aplikasi Web',
         liveUrl: 'https://websitef1-kappa.vercel.app/',
         githubUrl: '#',
     },
     {
-        id: 3,
+        id: 4,
         title: 'Java Snake Game',
         description: 'Game ular klasik yang dibangun menggunakan Java Swing.',
         image: '/snake_game.png',
-        tags: ['Java', 'Swing'],
+        tags: ['Java', 'Swing', 'Canvas API'],
         category: 'Desktop App',
         liveUrl: '#',
         githubUrl: 'https://github.com/MuhammadAzzamFajro/snake-java',
+        detailUrl: '/snake',
     },
     {
-        id: 4,
+        id: 5,
         title: 'Sistem Menu Makanan',
         description: 'Aplikasi manajemen pesanan makanan berbasis Java.',
         image: '/menu_makanan.png',
-        tags: ['Java', 'CLI'],
+        tags: ['Java', 'CLI', 'Order System'],
         category: 'Desktop App',
         liveUrl: '#',
         githubUrl: 'https://github.com/MuhammadAzzamFajro/menu-makanan-java',
+        detailUrl: '/menu',
     },
 ];
 
+const categories = ['Semua', 'Aplikasi Web', 'Desktop App'];
+
 export default function Projects() {
     const [mounted, setMounted] = useState(false);
+    const [activeCategory, setActiveCategory] = useState('Semua');
 
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    const filteredProjects = useMemo(() => {
+        return projects.filter(
+            project => activeCategory === 'Semua' || project.category === activeCategory
+        );
+    }, [activeCategory]);
 
     if (!mounted) return null;
 
@@ -75,12 +98,24 @@ export default function Projects() {
                     <h2 className={styles.minimalTitle}>Portfolio</h2>
                     <p className={styles.minimalSubtitle}>Eksplorasi proyek pengembangan web dan aplikasi.</p>
                 </header>
+
+                <div className={styles.filters}>
+                    {categories.map((category) => (
+                        <button
+                            key={category}
+                            className={`${styles.filterBtn} ${activeCategory === category ? styles.active : ''}`}
+                            onClick={() => setActiveCategory(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
                 
                 <div className={styles.grid}>
-                    {projects.map((project, index) => (
+                    {filteredProjects.map((project, index) => (
                         <div
                             key={project.id}
-                            className={styles.projectCard}
+                            className={`${styles.projectCard} glass`}
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             <div className={styles.projectImage}>
@@ -99,6 +134,11 @@ export default function Projects() {
                                                 Live Demo
                                             </a>
                                         )}
+                                        {project.detailUrl && (
+                                            <Link href={project.detailUrl} className={styles.overlayBtn}>
+                                                Detail
+                                            </Link>
+                                        )}
                                         <a href={project.githubUrl} className={styles.overlayBtn} target="_blank" rel="noopener noreferrer">
                                             Source
                                         </a>
@@ -111,6 +151,13 @@ export default function Projects() {
                                     <span className={styles.projectCategory}>{project.category}</span>
                                 </div>
                                 <p className={styles.projectDescription}>{project.description}</p>
+                                <div className={styles.tags}>
+                                    {project.tags.map((tag) => (
+                                        <span key={tag} className={styles.tag}>
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     ))}
