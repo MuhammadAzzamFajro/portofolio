@@ -156,21 +156,133 @@ body::before {
   left: 100%;
 }
 
-/* Animations */
-@keyframes reveal {
+/* ============ Scroll Reveal System (bold / 3D) ============ */
+main {
+  perspective: 1400px;
+}
+
+/* Whole section unfolds: tilt back + blur + rise, snaps into focus */
+main > section:not(#home) {
+  opacity: 0;
+  transform: translateY(80px) rotateX(-14deg) scale(0.96);
+  transform-origin: 50% 0%;
+  filter: blur(10px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.9s ease;
+}
+
+main > section:not(#home).in-view {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* Heading children ride in on their own timeline once section is visible */
+@keyframes revealWipe {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) skewY(3deg);
+    clip-path: inset(0 100% 0 0);
   }
-
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) skewY(0);
+    clip-path: inset(0 0 0 0);
   }
 }
 
+@keyframes revealPop {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.8); }
+  60%  { transform: translateY(0) scale(1.06); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes gradientSweep {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+main > section:not(#home).in-view .section-label {
+  animation: revealPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+}
+
+main > section:not(#home).in-view .section-title {
+  /* animated gradient shimmer sweeping across the title */
+  background: linear-gradient(90deg,
+    var(--accent-cyan), var(--accent-purple), var(--accent-pink), var(--accent-cyan));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    revealWipe 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both,
+    gradientSweep 6s linear 1s infinite;
+}
+
+main > section:not(#home).in-view .section-subtitle {
+  animation: revealWipe 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+/* Stagger the direct blocks inside each section container */
+main > section:not(#home) .container > * {
+  opacity: 0;
+}
+main > section:not(#home).in-view .container > * {
+  animation: revealWipe 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+main > section:not(#home).in-view .container > *:nth-child(1) { animation-delay: 0.20s; }
+main > section:not(#home).in-view .container > *:nth-child(2) { animation-delay: 0.38s; }
+main > section:not(#home).in-view .container > *:nth-child(3) { animation-delay: 0.54s; }
+main > section:not(#home).in-view .container > *:nth-child(n+4) { animation-delay: 0.68s; }
+
+@media (prefers-reduced-motion: reduce) {
+  main > section:not(#home),
+  main > section:not(#home).in-view .section-label,
+  main > section:not(#home).in-view .section-title,
+  main > section:not(#home).in-view .section-subtitle,
+  main > section:not(#home) .container > *,
+  main > section:not(#home).in-view .container > * {
+    animation: none !important;
+    transition: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    clip-path: none;
+  }
+}
+
+/* Legacy class kept for any direct usage */
 .reveal {
-  animation: reveal 0.8s ease forwards;
+  animation: revealWipe 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ============ Cursor Spotlight ============ */
+.cursor-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(0, 102, 255, 0.10),
+    rgba(139, 92, 246, 0.06) 40%,
+    transparent 65%
+  );
+  transition: background 0.08s linear;
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .cursor-spotlight { display: none; }
+}
+
+/* Particle trail canvas */
+.fx-trail {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* Custom Scrollbar */
@@ -236,11 +348,8 @@ body::before {
 }
 
 @keyframes float-bg {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  100% {
-    transform: translate(5%, 5%) scale(1.1);
-  }
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(6%, 4%) scale(1.08); }
+  66%  { transform: translate(-4%, 7%) scale(1.04); }
+  100% { transform: translate(3%, -3%) scale(1.12); }
 }

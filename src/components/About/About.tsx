@@ -1,39 +1,8 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
 import styles from './About.module.css';
 
 export default function About() {
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add(styles.visible);
-                    }
-                });
-            },
-            {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            }
-        );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
-        return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
-            }
-        };
-    }, []);
-
     return (
-        <section id="about" className={styles.about} ref={sectionRef}>
+        <section id="about" className={styles.about}>
             <div className="container">
                 <header className="section-heading">
                     <span className="section-label">Biografi</span>

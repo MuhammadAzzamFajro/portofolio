@@ -1,4 +1,4 @@
-import { Navbar, Hero, About, Skills, Projects, Certificates, Contact, Footer } from '@/components';
+import { Navbar, Hero, About, Skills, Projects, Certificates, Contact, Footer, ScrollReveal } from '@/components';
 
 export default function Home() {
   return (
@@ -15,6 +15,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <ScrollReveal />
     </>
   );
 }
