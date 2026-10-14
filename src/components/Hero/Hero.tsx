@@ -47,29 +47,22 @@ export default function Hero() {
         <section id="home" className={styles.hero}>
             <div className={styles.ambientGlow}>
                 <div className={styles.glow1}></div>
-                <div className={styles.glow2}></div>
             </div>
 
             <div className={styles.container}>
                 <div className={styles.grid}>
                     <div className={styles.content}>
+                        <div className={styles.nameLabel}>Hai, saya</div>
                         <h1 className={styles.title}>
-                            Menciptakan Karya <span className={styles.gradientText}>Digital Terbaik</span>
+                            Muhammad Azzam <span className={styles.gradientText}>Fajro</span>
                         </h1>
 
                         <div className={styles.roleWrapper}>
-                            <div className={styles.roleHeader}>Spesialisasi dalam</div>
                             <div className={styles.roleBody}>
                                 {displayText}
                                 <span className={styles.cursor}>_</span>
                             </div>
                         </div>
-
-                        <p className={styles.description}>
-                            Halo, Saya <strong>Azzam Fajro</strong>. Saya membangun aplikasi web berkinerja tinggi,
-                            aksesibel, dan menakjubkan secara visual yang memberikan
-                            dampak nyata.
-                        </p>
 
                         <div className={styles.actions}>
                             <a href="#projects" className="btn-premium">
@@ -87,28 +80,31 @@ export default function Hero() {
                     <div className={styles.visualContainer}>
                         <div className={styles.imageBackdrop}></div>
                         <div className={styles.imageWrapper}>
-                            <Image
-                                src="/premium-avatar.png"
-                                alt="Azzam Fajro 3D"
-                                width={500}
-                                height={500}
-                                className={styles.avatarImg}
-                                priority
-                            />
+                            <div className={styles.avatarFrame}>
+                                <Image
+                                    src="/api/profile-photo"
+                                    alt="Azzam Fajro"
+                                    width={450}
+                                    height={550}
+                                    className={styles.avatarImg}
+                                    priority
+                                    unoptimized
+                                />
+                            </div>
 
                             <div className={`${styles.floatCard} ${styles.card1}`}>
                                 <div className={styles.cardIcon}>⚡</div>
                                 <div className={styles.cardText}>
-                                    <span>Performa Cepat</span>
-                                    <small>99+ Core Web Vitals</small>
+                                    <span>Full Stack Dev</span>
+                                    <small>Laravel · Next.js</small>
                                 </div>
                             </div>
 
                             <div className={`${styles.floatCard} ${styles.card2}`}>
-                                <div className={styles.cardIcon}>🎨</div>
+                                <div className={styles.cardIcon}>🚀</div>
                                 <div className={styles.cardText}>
-                                    <span>Piksel Presisi</span>
-                                    <small>UI/UX Modern</small>
+                                    <span>Open to Work</span>
+                                    <small>Internship & Freelance</small>
                                 </div>
                             </div>
                         </div>
@@ -120,9 +116,7 @@ export default function Hero() {
                 <div className={styles.mouse}>
                     <div className={styles.wheel}></div>
                 </div>
-                <span>GULIR</span>
             </div>
         </section>
     );
 }
-

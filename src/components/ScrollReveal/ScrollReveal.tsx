@@ -141,7 +141,9 @@ export default function ScrollReveal() {
             cancelAnimationFrame(loop);
             removeEventListener('resize', resize);
             removeEventListener('pointermove', onTrail);
-            canvas.remove();
+            if (canvas.parentNode) {
+                canvas.parentNode.removeChild(canvas);
+            }
         });
 
         return () => cleanup.forEach((fn) => fn());
