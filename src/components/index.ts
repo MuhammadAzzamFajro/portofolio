@@ -1,9 +1,14 @@
 export { default as Navbar } from './Navbar/Navbar';
 export { default as Hero } from './Hero/Hero';
-export { default as About } from './About/About';
-export { default as Skills } from './Skills/Skills';
+export { default as History } from './History/History';
+export { default as Marquee } from './Marquee/Marquee';
 export { default as Projects } from './Projects/Projects';
+export { default as About } from './About/About';
 export { default as Certificates } from './Certificates/Certificates';
 export { default as Contact } from './Contact/Contact';
 export { default as Footer } from './Footer/Footer';
 export { default as ScrollReveal } from './ScrollReveal/ScrollReveal';
+export { default as Preloader } from './Preloader/Preloader';
+export { default as Cursor } from './Cursor/Cursor';
+export { default as ScrollProgress } from './ScrollProgress/ScrollProgress';
+export { default as MotionBanner } from './MotionBanner/MotionBanner';

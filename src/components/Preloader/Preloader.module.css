@@ -1,0 +1,59 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--film-black, #101210);
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+/* AF. logo — top left */
+.logo {
+  position: absolute;
+  top: 2rem;
+  left: 2.5rem;
+  font-family: var(--font-display, 'Fraunces', serif);
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: -0.04em;
+  color: var(--yellow, #F0B90B);
+}
+
+/* Counter — bottom right, massive */
+.counterWrap {
+  position: absolute;
+  bottom: 3.5rem;
+  right: 2.5rem;
+  line-height: 1;
+}
+
+.counter {
+  font-family: var(--font-display, 'Fraunces', serif);
+  font-weight: 900;
+  font-size: clamp(5rem, 20vw, 14rem);
+  letter-spacing: -0.04em;
+  color: #E4E1D6;
+  opacity: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Progress bar — bottom edge */
+.progressTrack {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(228, 225, 214, 0.1);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  width: 100%;
+  background: var(--yellow, #F0B90B);
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
+}

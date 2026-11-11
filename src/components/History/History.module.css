@@ -1,0 +1,135 @@
+.section {
+  padding-block: var(--section-gap);
+}
+
+.inner {
+  max-width: 900px;
+}
+
+.header {
+  margin-bottom: 5rem;
+}
+
+/* Timeline layout */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.lineSvg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Row: alternating left/right */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* Default: card left, dot center, empty right */
+.row .card { grid-column: 1; }
+.row .dot  { grid-column: 2; }
+.row::after {
+  content: '';
+  grid-column: 3;
+}
+
+/* Row right: empty left, dot center, card right */
+.rowRight .card { grid-column: 3; order: 1; }
+.rowRight .dot  { grid-column: 2; order: 0; }
+.rowRight::before {
+  content: '';
+  grid-column: 1;
+  order: -1;
+}
+
+/* Film frame dot */
+.dot {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--yellow);
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  position: relative;
+  z-index: 2;
+  will-change: transform, opacity;
+}
+
+.dotCode {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--yellow);
+  font-weight: 500;
+}
+
+/* Card */
+.card {
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  background: var(--paper);
+  transition: border-color 0.25s;
+  will-change: transform, opacity;
+}
+
+.card:hover { border-color: var(--yellow); }
+
+.cardBody {
+  padding: 1.5rem;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.cardSub {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 0.5rem;
+}
+
+.cardNote {
+  color: var(--ink-dim);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Responsive: stack to left aligned line */
+@media (max-width: 768px) {
+  .lineSvg { left: 24px; transform: none; }
+  .row {
+    grid-template-columns: 48px 1fr;
+    gap: 1.25rem;
+  }
+  .row .card,
+  .rowRight .card {
+    grid-column: 2;
+    order: 1;
+  }
+  .row .dot,
+  .rowRight .dot {
+    grid-column: 1;
+    order: 0;
+  }
+  .row::after,
+  .rowRight::before { display: none; }
+}

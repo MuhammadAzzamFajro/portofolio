@@ -1,122 +1,155 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Hero.module.css';
 
-const roles = ['Full Stack Developer', 'UI/UX Designer', 'Software Engineer'];
+gsap.registerPlugin(ScrollTrigger);
+
+const FIRST = 'Azzam'.split('');
+const LAST  = 'Fajro'.split('');
 
 export default function Hero() {
-    const [currentRole, setCurrentRole] = useState(0);
-    const [charIndex, setCharIndex] = useState<number>(0);
-    const [phase, setPhase] = useState<'typing' | 'pausing' | 'deleting'>('typing');
+  const sectionRef = useRef<HTMLElement>(null);
+  const nameWrapperRef = useRef<HTMLDivElement>(null);
+  const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const subRef = useRef<HTMLParagraphElement>(null);
+  const cueRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLSpanElement>(null);
 
-    useEffect(() => {
-        const currentFullText = roles[currentRole];
-        let delay = 90;
+  useEffect(() => {
+    const section = sectionRef.current;
+    const nameWrapper = nameWrapperRef.current;
+    if (!section || !nameWrapper) return;
 
-        if (phase === 'typing') {
-            if (charIndex < currentFullText.length) {
-                const timer = setTimeout(() => setCharIndex((prev: number) => prev + 1), delay);
-                return () => clearTimeout(timer);
-            }
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const motionPref = typeof window !== 'undefined' ? localStorage.getItem('motion_preference') : null;
+    const isReduced = motionPref === 'reduced' || (prefersReduced && motionPref !== 'enable');
 
-            setPhase('pausing');
-            return;
-        }
+    const ctx = gsap.context(() => {
+      // If reduced motion, set everything visible immediately
+      if (isReduced) {
+        gsap.set(lettersRef.current, { yPercent: 0, opacity: 1 });
+        gsap.set(subRef.current, { opacity: 1, y: 0 });
+        gsap.set(cueRef.current, { opacity: 1 });
+        gsap.set(lineRef.current, { scaleY: 1 });
+        return;
+      }
 
-        if (phase === 'pausing') {
-            delay = 1400;
-            const timer = setTimeout(() => setPhase('deleting'), delay);
-            return () => clearTimeout(timer);
-        }
+      // Initial state
+      gsap.set(lettersRef.current, { yPercent: 110, opacity: 0 });
+      gsap.set(subRef.current, { opacity: 0, y: 15 });
+      gsap.set(cueRef.current, { opacity: 0 });
+      gsap.set(lineRef.current, { scaleY: 0 });
 
-        if (charIndex > 0) {
-            delay = 55;
-            const timer = setTimeout(() => setCharIndex((prev: number) => prev - 1), delay);
-            return () => clearTimeout(timer);
-        }
+      const startEntrance = () => {
+        const tl = gsap.timeline();
 
-        setCurrentRole((prev: number) => (prev + 1) % roles.length);
-        setPhase('typing');
-    }, [currentRole, charIndex, phase]);
+        // 1. Letters reveal: stagger 80ms, expo.out
+        tl.to(lettersRef.current, {
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.9,
+          stagger: 0.08,
+          ease: 'expo.out',
+        })
+        // 2. Subline fade up
+        .to(subRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'expo.out',
+        }, '-=0.3')
+        // 3. Scroll cue
+        .to(cueRef.current, {
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+        }, '-=0.2')
+        .to(lineRef.current, {
+          scaleY: 1,
+          duration: 0.8,
+          ease: 'expo.out',
+        }, '-=0.4');
+      };
 
-    const displayText = roles[currentRole].slice(0, charIndex);
+      // Listen for preloader completion, with fallback timeout
+      let started = false;
+      const onPreloaderDone = () => {
+        if (started) return;
+        started = true;
+        startEntrance();
+      };
 
-    return (
-        <section id="home" className={styles.hero}>
-            <div className={styles.ambientGlow}>
-                <div className={styles.glow1}></div>
-            </div>
+      window.addEventListener('preloader:done', onPreloaderDone);
+      const fallbackTimer = setTimeout(onPreloaderDone, 2400);
 
-            <div className={styles.container}>
-                <div className={styles.grid}>
-                    <div className={styles.content}>
-                        <div className={styles.nameLabel}>Hai, saya</div>
-                        <h1 className={styles.title}>
-                            Muhammad Azzam <span className={styles.gradientText}>Fajro</span>
-                        </h1>
+      // Zoom-in saat di-scroll: nama membesar dengan origin kiri (scrub)
+      gsap.to(nameWrapper, {
+        scale: 1.35,
+        opacity: 0.9,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
 
-                        <div className={styles.roleWrapper}>
-                            <div className={styles.roleBody}>
-                                {displayText}
-                                <span className={styles.cursor}>_</span>
-                            </div>
-                        </div>
+      return () => {
+        window.removeEventListener('preloader:done', onPreloaderDone);
+        clearTimeout(fallbackTimer);
+      };
+    }, section);
 
-                        <div className={styles.actions}>
-                            <a href="#projects" className="btn-premium">
-                                Lihat Proyek
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </a>
-                            <a href="#contact" className={styles.btnSecondary}>
-                                Hubungi Saya
-                            </a>
-                        </div>
-                    </div>
+    return () => ctx.revert();
+  }, []);
 
-                    <div className={styles.visualContainer}>
-                        <div className={styles.imageBackdrop}></div>
-                        <div className={styles.imageWrapper}>
-                            <div className={styles.avatarFrame}>
-                                <Image
-                                    src="/api/profile-photo"
-                                    alt="Azzam Fajro"
-                                    width={450}
-                                    height={550}
-                                    className={styles.avatarImg}
-                                    priority
-                                    unoptimized
-                                />
-                            </div>
+  return (
+    <section id="home" ref={sectionRef} className={styles.hero} aria-label="Halaman utama">
+      <div className={styles.inner}>
+        <div ref={nameWrapperRef} className={styles.nameWrapper}>
+          <h1 className={styles.name} aria-label="Azzam Fajro">
+            {/* First name */}
+            <span className={styles.nameLine} aria-hidden="true">
+              {FIRST.map((ch, i) => (
+                <span
+                  key={i}
+                  ref={(el) => { lettersRef.current[i] = el; }}
+                  className={styles.letter}
+                >
+                  {ch}
+                </span>
+              ))}
+            </span>
+            {/* Last name */}
+            <span className={styles.nameLine} aria-hidden="true">
+              {LAST.map((ch, i) => (
+                <span
+                  key={i}
+                  ref={(el) => { lettersRef.current[FIRST.length + i] = el; }}
+                  className={`${styles.letter} ${styles.letterAccent}`}
+                >
+                  {ch}
+                </span>
+              ))}
+            </span>
+          </h1>
 
-                            <div className={`${styles.floatCard} ${styles.card1}`}>
-                                <div className={styles.cardIcon}>⚡</div>
-                                <div className={styles.cardText}>
-                                    <span>Full Stack Dev</span>
-                                    <small>Laravel · Next.js</small>
-                                </div>
-                            </div>
+          {/* Subline */}
+          <p ref={subRef} className={styles.sub}>
+            Freelancer · Laravel &amp; Next.js
+          </p>
+        </div>
+      </div>
 
-                            <div className={`${styles.floatCard} ${styles.card2}`}>
-                                <div className={styles.cardIcon}>🚀</div>
-                                <div className={styles.cardText}>
-                                    <span>Open to Work</span>
-                                    <small>Internship & Freelance</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className={styles.scrollDown}>
-                <div className={styles.mouse}>
-                    <div className={styles.wheel}></div>
-                </div>
-            </div>
-        </section>
-    );
+      {/* Scroll cue */}
+      <div ref={cueRef} className={styles.scrollCue} aria-hidden="true">
+        <span ref={lineRef} className={styles.scrollLine} />
+        <span className={styles.scrollLabel}>scroll</span>
+      </div>
+    </section>
+  );
 }

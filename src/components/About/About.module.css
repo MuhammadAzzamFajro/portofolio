@@ -1,88 +1,246 @@
-.about {
-    padding: 100px 0;
-    position: relative;
-    background: var(--bg-primary);
+.section {
+  padding-block: var(--section-gap);
+  border-top: 1.5px solid var(--border);
 }
 
-.mainContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 4rem;
-    max-width: 850px;
-    margin-inline: auto;
+.header {
+  margin-bottom: 4rem;
 }
 
-.textSection {
-    background: var(--bg-glass);
-    border: 1px solid var(--border-glass);
-    padding: clamp(1.5rem, 5vw, 4rem);
-    border-radius: 2.5rem;
-    backdrop-filter: blur(15px);
-    width: 100%;
+.body {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 4.5rem;
+  align-items: start;
 }
 
-.paragraph {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    line-height: 1.8;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
+/* ─── Photo Film Frame ─── */
+.photoFrame {
+  background: var(--film-black);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  transition: border-color 0.3s;
 }
 
-.highlight {
-    color: var(--accent-cyan);
-    font-weight: 700;
+.photoFrame:hover {
+  border-color: var(--yellow);
 }
 
-.statsSection {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.perfTop,
+.perfBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--film-black);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.perfBottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
+}
+
+.holes {
+  display: flex;
+  gap: 8px;
+}
+
+.photoWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--film-black);
+  overflow: hidden;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.photoFrame:hover .photo {
+  transform: scale(1.03);
+}
+
+.frameCaption {
+  padding: 1rem 1.25rem;
+  background: var(--film-black);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.frameTitle {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #E4E1D6;
+  letter-spacing: -0.02em;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--yellow);
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 8px var(--yellow);
+}
+
+/* ─── Content Column ─── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+.bioLead {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.bioLeadAccent {
+  color: var(--yellow);
+}
+
+.bioParagraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.bioText {
+  font-size: 1.02rem;
+  color: var(--ink-dim);
+  line-height: 1.78;
+}
+
+.bioText strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Timeline Cards inside About */
+.milestones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  padding-top: 0.5rem;
+}
+
+.milestoneCard {
+  border: 1.5px solid var(--border);
+  padding: 1.25rem 1.1rem;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.milestoneCard:hover {
+  border-color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+.milestoneTag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.milestoneTitle {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.milestoneDesc {
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+/* Notes row */
+.notesRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  border-top: 1.5px solid var(--border);
+  padding-top: 1.8rem;
+}
+
+.noteItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.noteLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.noteValue {
+  font-size: 0.9rem;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .body {
+    grid-template-columns: 320px 1fr;
     gap: 3rem;
-    width: 100%;
+  }
+  .milestones {
+    grid-template-columns: 1fr;
+  }
+  .notesRow {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 }
 
-.statItem {
-    flex: 1;
-    min-width: 220px;
-    padding: 3rem 2rem;
-    background: var(--bg-glass);
-    border: 1px solid var(--border-glass);
-    border-radius: 2rem;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.statItem:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-cyan);
-    background: rgba(0, 0, 0, 0.02);
-}
-
-.statValue {
-    display: block;
-    font-size: 3rem;
-    font-weight: 800;
-    font-family: var(--font-heading);
-    background: var(--gradient-cyber);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
-}
-
-.statLabel {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    line-height: 1.6;
-}
-
-@media (max-width: 640px) {
-    .statItem {
-        min-width: 100%;
-    }
+@media (max-width: 768px) {
+  .body {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .photoFrame {
+    max-width: 360px;
+    margin-inline: auto;
+  }
+  .milestones {
+    grid-template-columns: 1fr;
+  }
+  .notesRow {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
 }
